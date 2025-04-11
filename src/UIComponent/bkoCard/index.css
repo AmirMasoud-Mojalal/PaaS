@@ -1,0 +1,16 @@
+.card {
+  border-width: 2px !important;
+  border-color: #ed3237 !important;
+}
+.card-header {
+  background-color: #ed3237 !important;
+  color: aliceblue !important;
+}
+.btn-close {
+  color: aliceblue !important;
+}
+.card-footer {
+  background-color: #c1c1c1 !important;
+  /* background-color: #f1d4d8 !important; */
+  /* background-color: #424242 !important; */
+}

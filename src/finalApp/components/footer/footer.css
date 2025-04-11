@@ -1,0 +1,14 @@
+.nav-link a {
+  padding: 0.1875rem 0.5rem;
+  margin-top: 0.125rem;
+  margin-left: 1.25rem;
+}
+a:hover {
+  color: black;
+  background-color: var(--bs-tertiary-bg);
+  border-radius: 8px;
+}
+
+footer{
+  /* flex-shrink: 0; */
+}

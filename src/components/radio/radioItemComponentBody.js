@@ -1,0 +1,3 @@
+const componentBody = (cols) => {
+  return ``;
+}

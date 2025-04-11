@@ -1,0 +1,42 @@
+
+html, body {
+  /* height: 100%; */
+  min-height: 100vh;
+  /* min-height: -webkit-fill-available; */
+}
+
+/* html {
+  height: -webkit-fill-available;
+} */
+
+#root {
+  /* height: 100%; */
+  min-height: 100vh;
+  overflow: auto;
+  /* overflow: hidden; */
+  display: flex;
+  flex-direction: column;
+  /* flex: 1 0 auto; */
+}
+
+
+
+/*Soluion 2 - not recomended*/
+/* 
+html {
+  height: 100%;
+}
+
+.flex-grow {
+  flex: 1;
+}
+
+.canvas-wrapper {
+  overflow: scroll;
+}
+
+.canvas {
+  width: 3000px;
+  height: 3000px;
+}
+*/

@@ -1,0 +1,7 @@
+.form-check .form-check-input {
+  float: right !important;
+  margin-left: 0.5em !important;
+}
+.form-check-inline {
+  margin-right: 0em !important;
+}

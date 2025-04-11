@@ -1,0 +1,8 @@
+.grid-container {
+  border-width: 0 0 0 !important;
+  /* border-width: 0.2rem 0.2rem 0 !important; */
+  border-radius: 10px 10px 10px 10px;
+  border: groove !important;
+  border-color: 0000003b !important;
+  /* border-bottom: groove; */
+}

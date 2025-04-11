@@ -1,0 +1,328 @@
+ ============================
+|        1.push to git       |
+ ============================
+
+1.1.copy files
+===========
+from
+  D:\projects\PaaS\src\Generator\Output\Client\mutualUnderstanding
+to
+  D:\projects\mutualUnderstanding-test\frontend
+
+from
+  D:\projects\PaaS\src\Generator\Output\Server\mutualUnderstanding
+to
+  D:\projects\mutualUnderstanding-test\backend
+
+
+1.2.push to git
+===========
+from within folders:
+  D:\projects\PaaS
+  D:\projects\mutualUnderstanding-test\frontend
+  D:\projects\mutualUnderstanding-test\backend
+
+run these commands:
+  git add .
+  git commit -m "..."
+  git push origin master
+    passphrase: Tehr@n20
+
+
+ ============================
+|      2. Deploy - Server    |
+ ============================
+
+2.production deployment - server
+==============================
+in FeedGlobalConfig.js
+  level up 'version'
+  change mode to "production"
+  set 'backendIpAddress' ip address
+change localds in DataSourceConfig.js file
+  localds: {
+    BETA ->  url: 'jdbc:db2://172.26.34.39:50001/bmt1',
+                    OR
+     ALPHA  ->  url: 'jdbc:db2://172.20.141.52:50001/bmt1',
+  }
+change storedProcedure datasource
+  getSeriFromTashilat
+  activeDeActiveTashilat
+  revokeSeriTashilat
+  getGovahiEmza
+  lending
+  rialLetterOfGuarantie
+  rialLetterOfCredit
+  arzLetterOfGuarantie
+  arzLetterOfCredit
+  collateral
+run command
+  node Generate.js
+intellij Idea
+  delete datasource from config folder
+    CoredsDataSourceConfiguration
+  delete 'test' package
+  //delete FACILITY specific repositories from devds/coreds package if it changed
+  //  ActiveDeActiveTashilat
+  //  GetSeriFromTashilat 
+  clean project folders
+    *** NO *** delete 'devds' if build for BETA release production ***
+    *** NO *** delete 'misds' if build for ALPHA release development ***
+  Build project (Ctl+F9) for any inconsistency
+  maven clean
+  maven package
+
+vscode (for DEV release)
+  customerLifeCycle:
+    comment getCustomerLifeCycleValue(...)
+    comment const customerLifeCycleValue = ...
+copy .war file
+  ->  D:\projects\PaaS\src\Generator\Output\Server\mutualUnderstanding\target
+  from 'target' folder to tomcat 'webapps' folder
+
+ ============================
+|      3. Deploy - Client    |
+ ============================
+
+3.production deployment - server
+==============================
+npm run build
+copy production folder
+  ->  D:\projects\PaaS\src\Generator\Output\Client\mutualUnderstanding\dist
+  from 'dist' folder to tomcat 'ROOT' folder
+
+ ============================
+|      prepare Database      |
+ ============================
+
+DROP user/role/users_roles TABLES
+==============================
+DROP TABLE TAFSCHM.users_roles
+DROP TABLE TAFSCHM.ROLE
+DROP TABLE TAFSCHM.USER
+
+Enable Hibernate auto generate configuration
+==============================
+in 
+  LocaldsDataSourceConfiguration 
+CLASS file, Uncomment
+  properties.put("hibernate.hbm2ddl.auto","update");
+
+fill  ROLE  table
+==============================
+  run 'initiateRoleTable()' test case
+  
+create  'superuser'  user
+==============================
+  run 'initiateUserTable()' test case
+
+ ============================
+|       4. post task         |
+ ============================
+
+create JIRA task
+==============================
+https://task.behsazan.net/secure/Dashboard.jspa
+
+باسلام وعرض ادب
+جهت نصب صحیح این نسخه لطفا :
+صفر: اپلیکیشن سرور تام کت را متوقف کنید
+
+یک :‌ محتویات پوشه
+ROOT
+نسخه فعلی از مسیر
+webapps
+اپلیکیشن سرور تام کت پاک شود
+
+دو :‌ محتویات پوشه
+ROOT
+موجود در اف تی پی را در مسیر
+webapps
+اپلیکیشن سرور تام کت کپی فرمایید.
+
+سه :
+war
+فایل نسخه قبل از مسیر
+webapps
+اپلیکیشن سرور تام کت حذف گردد.
+
+چهار:
+war
+فایل نسخه جدید موجود در اف تی پی را در مسیر
+webapps
+اپلیکیشن سرور تام کت کپی فرمایید
+
+چهار : محتویات پوشه
+\work\Catalina\localhost
+تام کت را حذف فرمایید.
+
+پنج : تام کت سرور راه اندازی مجدد فرمایید.
+
+شش: لاگ اپلیکیشن سرور جهت بررسی صحت نصب ارسال بفرمایید
+
+باتشکر
+
+
+add new JPA Entity
+==============================
+add Entity to Domain.js
+add Entity to Content.js
+add Entity to ContentMap.js
+
+npm start
+  package.json -> webpack.config.js -> ./src/js/main.jsx
+
+npm run startX
+  pacakge.json -> index.js -> App2.js
+
+Correct format of Reports
+==============================
+const RptPOS = [
+  [
+    {
+      name: 'list',
+      title: 'اطلاعات کارت خوان',
+      value: {
+        type: 'array',
+        schema: {
+          type: 'array',
+          option: [
+            ['نوع کارت خوان', 'شماره حساب متصل', 'توضیحات'],
+            [['vPOS', '1026853154', '']],
+          ],
+        },
+      },
+    },
+  ],
+];
+
+
+Learn Node FS module
+
+C:\Users\mojallal\alaki\create-react-app\my-app\src>npm start
+
+
+public\index.html ->  start: react-script-start
+src\index.html    ->  start: webpack serve
+
+to seperate soruce from distrubution create & move
+  src\index.html to dist\index.html
+HtmlWebPackPlugin will generate 'index.html' file automatically. so we can have empty directory
+  dist\
+  
+react-script-staClientProjectCommonrt:
+  localhost:3000
+
+webpack:
+  src\index.html
+  src\js\main.js
+  src\scss\styles.css
+  webpack.config.js
+  localhost:8080
+
+style-loader: 
+  injects the CSS into a <style> element in the <head> of the HTML page
+css-loader: 
+  helps with using @import and url(), 
+postcss-loader: 
+  is required for Autoprefixer, and 
+sass-loader: 
+  allows us to use Sass.
+
+add new Report
+==============================
+Content
+ContentMap
+Domain
+ClientProjectReportGenerator
+  --> Line 704
+  --> generateReactForm() 
+
+  ->  ClientProjectCommonStructureGenerator
+        isCollateralReportComponent(col)
+          && (
+            result = collateralReportComponentBody(col, mode, space),
+            addImportObject(result.import),
+            formBody += result.body
+          )
+
+  ->  ObjectFormValidator
+        exports.isCostBenefitComponent = (col) => {
+          if (
+            col['value']['type'] === 'non-primitive' &&
+            col['value']['schema']['type'] === 'String' &&
+            col['value']['schema']['option'] === 'costBenefitReport'
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+  ->  Add component caller  -  frontEnd\react\objectForm\report\
+  ->  Add component body    -  ClientProjectUIComponentGenerator
+  ->  ClientProjectCommonStructureGeneretor
+
+
+ ============================
+|  5. DB2 32-bit Data Source  |
+ ============================
+
+add 'Actie Directory USER' to the local 'Administrator' gorup
+add Database connection
+========================
+create '.bat' file in C: drive with custom NAME and IP of remote database
+
+  @ECHO OFF
+  db2.exe "CATALOG TCPIP NODE BMT REMOTE 172.20.141.52 SERVER 50001"
+  PAUSE
+  db2.exe "CATALOG DATABASE BMT AT NODE BMT"
+  PAUSE
+  db2cli registerdsn -add BMT -system
+
+
+run as Administrator:
+  IBM DB2 DB2COPY1 (Default)  -> Command Window - Administrator
+run above custom .bat file from command line
+
+now, you can check datasource in ODBC Data Sources (32-bit)
+
+ ============================
+|  6. DB2 64-bit Data Source |
+ ============================
+open ODBC Data Source Administrator (64-bit)
+click 'Add' on 'System DSN'
+
+
+ ============================
+|  7. unCatalogue Data Source |
+ ============================
+  db2 uncatalog db REP
+  db2 uncatalog node rep
+
+
+ ============================
+|   Data Source Name (DSN)   |
+ ============================
+What is DSN(Data Source Name):
+  It is the name that applications use to request a connection to an ODBC Data Source. 
+  In other words, it is a symbolic name that represents the ODBC connection. 
+  It stores the connection details like database name, directory, database driver, UserID, password, etc. when making a connection to the ODBC.
+  is a string that has an associated data structure used to describe a connection to a data source. 
+  Most commonly used in connection with ODBC, DSNs also exist for JDBC and for other data access mechanisms. 
+  The term often overlaps with "connection string". 
+  Most systems do not make a distinction between DSNs or connection strings and the term can often be used interchangeably.
+
+  DSN attributes may include, but are not limited to:[2]
+    the name of the data source
+    the location of the data source
+    the name of a database driver which can access the data source
+    a user ID for data access (if required)
+    a user password for data access (if required)
+
+
+ ============================
+|       IBM Data Studio       |
+|   Create Stored Procedure   |
+ ============================
+IBM Data Studio:
+  https://www.ibm.com/docs/en/data-studio/4.1.1?topic=learn-create-test-deploy-db2-sql-stored-procedure

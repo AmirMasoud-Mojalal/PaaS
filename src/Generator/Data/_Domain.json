@@ -1,0 +1,928 @@
+{
+  "mutualUnderstanding": {
+    "restServices": {},
+    "storedProcedures": {
+      "fillAccountInf": {
+        "name": "SPG_FULLACCOUNTINFO03",
+        "description": "",
+        "datasourceName": "coreds",
+        "schema": "TAFSHMA",
+        "parameters": {
+          "PO_ERROR": { "direction": "OUT", "type": "Integer" },
+          "PI_EXTACCNO": { "direction": "IN", "type": "BigDecimal" },
+          "PO_TYPEX": { "direction": "OUT", "type": "Short" },
+          "PO_ACCTYPE": { "direction": "OUT", "type": "Short" },
+          "PO_STATUSX": { "direction": "OUT", "type": "Short" },
+          "PO_ACCLOCKSTATUS": { "direction": "OUT", "type": "Short" },
+          "PO_CONTROLPAYERID": { "direction": "OUT", "type": "Short" },
+          "PO_ETRNSSTATUS": { "direction": "OUT", "type": "Short" },
+          "PO_PERMITDRAWDOC": { "direction": "OUT", "type": "Short" },
+          "PO_SERVICESTATUS": { "direction": "OUT", "type": "Short" },
+          "PO_ARZCODE": { "direction": "OUT", "type": "Short" },
+          "PO_CATEGORYCODE": { "direction": "OUT", "type": "Short" },
+          "PO_PROFITSTATUS": { "direction": "OUT", "type": "Short" },
+          "PO_RESPITEDELAY": { "direction": "OUT", "type": "Short" },
+          "PO_ACCCUSTTYPE": { "direction": "OUT", "type": "Short" },
+          "PO_ISINACTIVE": { "direction": "OUT", "type": "Short" },
+          "PO_ISACTIVE": { "direction": "OUT", "type": "Short" },
+          "PO_ISSUSPEND": { "direction": "OUT", "type": "Short" },
+          "PO_ISCLOSED": { "direction": "OUT", "type": "Short" },
+          "PO_ISACCLOCK": { "direction": "OUT", "type": "Short" },
+          "PO_ISINDIVIDUAL": { "direction": "OUT", "type": "Short" },
+          "PO_ISCOMMUNAL": { "direction": "OUT", "type": "Short" },
+          "PO_ACCDURATION": { "direction": "OUT", "type": "Short" },
+          "PO_PERMITABSENTDRAW": { "direction": "OUT", "type": "Short" },
+          "PO_BILLREPORTERBRANCH": { "direction": "OUT", "type": "Integer" },
+          "PO_BRANCH": { "direction": "OUT", "type": "Integer" },
+          "PO_CREATEDATE": { "direction": "OUT", "type": "Integer" },
+          "PO_INTCUSTID": { "direction": "OUT", "type": "Integer" },
+          "PO_STAMPDATE": { "direction": "OUT", "type": "Integer" },
+          "PO_MINDURATION": { "direction": "OUT", "type": "Integer" },
+          "PO_STAMPAMNT": { "direction": "OUT", "type": "Integer" },
+          "PO_ACCNO": { "direction": "OUT", "type": "BigDecimal" },
+          "PO_EXTACCNO": { "direction": "OUT", "type": "BigDecimal" },
+          "PO_SANJESHACCNO": { "direction": "OUT", "type": "BigDecimal" },
+          "PO_EXTCUSTID": { "direction": "OUT", "type": "BigDecimal" },
+          "PO_MINBALANCE": { "direction": "OUT", "type": "BigDecimal" },
+          "PO_MINPROFITBALANCE": { "direction": "OUT", "type": "BigDecimal" },
+          "PO_OWNERNAME": { "direction": "OUT", "type": "String" },
+          "PO_STEP": { "direction": "OUT", "type": "Integer" }
+        },
+        "resultSet": {}
+      },
+      "getTafahomAccount": {
+        "name": "TGFINAC1",
+        "description": "",
+        "datasourceName": "localds",
+        "schema": "TAFSHMA",
+        "parameters": {
+          "PO_ERROR": { "direction": "OUT", "type": "Integer" },
+          "PI_TAFCODE": { "direction": "IN", "type": "BigDecimal" }
+        },
+        "resultSet": {
+          "OWNERNAME": { "direction": "OUT", "type": "String" },
+          "ACCTYPE": { "direction": "OUT", "type": "Integer" },
+          "STATUSX": { "direction": "OUT", "type": "Integer" },
+          "INTCUSTID": { "direction": "OUT", "type": "Integer" },
+          "EXTCUSTID": { "direction": "OUT", "type": "Long" },
+          "BRANCH": { "direction": "OUT", "type": "Integer" },
+          "CREATEDATE": { "direction": "OUT", "type": "Integer" },
+          "STATUSDATE": { "direction": "OUT", "type": "Integer" },
+          "TAFCODE": { "direction": "OUT", "type": "BigDecimal" },
+          "ACCNO": { "direction": "OUT", "type": "Long" },
+          "EXTACCNO": { "direction": "OUT", "type": "Long" },
+          "NATIONALCODE": { "direction": "OUT", "type": "Long" },
+          "BALANCE": { "direction": "OUT", "type": "Long" },
+          "ACCDESC": { "direction": "OUT", "type": "String" },
+          "TITLEX": { "direction": "OUT", "type": "String" },
+          "STATUSDESC": { "direction": "OUT", "type": "String" },
+          "TIMEX": { "direction": "OUT", "type": "Date" },
+          "VAZIAT": { "direction": "OUT", "type": "String" },
+          "AVG1": { "direction": "OUT", "type": "Long" },
+          "FURM": { "direction": "OUT", "type": "Long" },
+          "TYP": { "direction": "OUT", "type": "String" },
+          "BALANCESUM": { "direction": "OUT", "type": "Long" },
+          "AVG1SUM": { "direction": "OUT", "type": "Long" },
+          "FURMSUM": { "direction": "OUT", "type": "Long" },
+          "RowNumber": { "direction": "OUT", "type": "Integer" }
+        }
+      }
+    },
+    "jpas": {
+      "jpaName": {
+        "datasourceName": "localds",
+        "schema": "TAFSHMA",
+        "content": [
+          [
+            {
+              "name": "شماره آرشیو",
+              "title": "archiveNumber",
+              "value": {
+                "type": "primitive",
+                "schema": { "type": "String", "isUnique": true }
+              }
+            },
+            {
+              "name": "تاریخ درخواست",
+              "title": "requestDate",
+              "value": { "type": "primitive", "schema": { "type": "Date" } }
+            }
+          ],
+          [
+            {
+              "name": "عنوان تفاهم نامه",
+              "title": "title",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            },
+            {
+              "name": "نوع تفاهم نامه",
+              "title": "type",
+              "value": {
+                "type": "primitive",
+                "schema": {
+                  "type": "String",
+                  "enum": ["انتخاب کنید", "کشوری", "استانی", "تخصیصی"],
+                  "option": "select"
+                }
+              }
+            }
+          ],
+          [
+            {
+              "name": "مدیریت شعب",
+              "title": "branchManagement",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            },
+            {
+              "name": "شعبه عامل",
+              "title": "branch",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            }
+          ],
+          [
+            {
+              "name": "ناحیه",
+              "title": "region",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            },
+            {
+              "name": "ادارات کل",
+              "title": "administration",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            }
+          ],
+          [
+            {
+              "name": "کارشناس تفاهم نامه",
+              "title": "expertId",
+              "value": {
+                "type": "primitive",
+                "schema": {
+                  "type": "String",
+                  "enum": ["انتخاب کنید", "کشوری", "استانی", "تخصیصی"],
+                  "option": "select"
+                }
+              }
+            },
+            {
+              "name": "وضعیت تفاهم نامه",
+              "title": "state",
+              "value": {
+                "type": "primitive",
+                "schema": {
+                  "type": "String",
+                  "enum": ["انتخاب کنید", "دردست اقدام", "بلااقدام", "نافذ"],
+                  "option": "select",
+                  "size": { "minValue": 4, "maxValue": 50 }
+                }
+              }
+            }
+          ]
+        ]
+      },
+      "ghodghod": {
+        "datasourceName": "misds",
+        "schema": "JAMSHMA",
+        "content": [
+          [
+            {
+              "name": "شماره آرشیو",
+              "title": "archiveNumber",
+              "value": {
+                "type": "primitive",
+                "schema": { "type": "String", "isUnique": true }
+              }
+            },
+            {
+              "name": "تاریخ درخواست",
+              "title": "requestDate",
+              "value": { "type": "primitive", "schema": { "type": "Date" } }
+            }
+          ],
+          [
+            {
+              "name": "عنوان تفاهم نامه",
+              "title": "title",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            },
+            {
+              "name": "نوع تفاهم نامه",
+              "title": "type",
+              "value": {
+                "type": "primitive",
+                "schema": {
+                  "type": "String",
+                  "enum": ["انتخاب کنید", "کشوری", "استانی", "تخصیصی"],
+                  "option": "select"
+                }
+              }
+            }
+          ]
+        ]
+      },
+      "tasParamEntity": {
+        "datasourceName": "localds",
+        "schema": "TAFSHMA",
+        "content": [
+          [
+            {
+              "name": "سود تسهیلات عقود مشارکتی تدریجی",
+              "title": "tadrijiIRate",
+              "value": {
+                "type": "primitive",
+                "schema": {
+                  "type": "String",
+                  "isNotNull": true,
+                  "isNotBlank": true,
+                  "isEmail": true,
+                  "isUnique": false,
+                  "size": { "minValue": 5, "maxValue": 50 },
+                  "columnLength": 50,
+                  "isValidInModelBuilder": true,
+                  "isValidInEntityBuilder": true
+                }
+              }
+            },
+            {
+              "name": "سود تسهیلات عقود سرمایه درگردش",
+              "title": "gardeshIRate",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            }
+          ],
+          [
+            {
+              "name": "ضریب هزینه مطالبات مشکوک الوصول",
+              "title": "mashkoukCostCoefficient",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            },
+            {
+              "name": "نرخ کارمزد تسهیلات قرض الحسنه",
+              "title": "gharzWageRate",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            }
+          ],
+          [
+            {
+              "name": "حساب جاری",
+              "title": "jariAccSudJayeze",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            },
+            {
+              "name": "حساب کوتاه مدت عادی",
+              "title": "shortAccAdiSudJayeze",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            }
+          ],
+          [
+            {
+              "name": "حساب کوتاه مدت ویژه",
+              "title": "vizheKhadamatSudJayeze",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            },
+            {
+              "name": "حساب کوتاه مدت با نرخ ترجیحی",
+              "title": "shortAccTarjihiSudJayeze",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            }
+          ],
+          [
+            {
+              "name": "حساب پس انداز",
+              "title": "gharzAccSudJayeze",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            },
+            {
+              "name": "حساب بلندمدت یکساله",
+              "title": "longAccSudJayeze",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            }
+          ],
+          [
+            {
+              "name": "حساب جاری دولتی",
+              "title": "jariDolatiAccSudJayeze",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            },
+            {
+              "name": "emptyCell",
+              "title": "",
+              "value": {
+                "type": "emptyCell",
+                "schema": { "type": "emptyCell" }
+              }
+            }
+          ],
+          [
+            {
+              "name": "حساب جاری",
+              "title": "jariAccHadNaghdinegi",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            },
+            {
+              "name": "حساب کوتاه مدت عادی",
+              "title": "shortAccHadNaghdinegi",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            }
+          ],
+          [
+            {
+              "name": "حساب کوتاه مدت ویژه",
+              "title": "shortAccVijeHadNaghdinegi",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            },
+            {
+              "name": "حساب کوتاه مدت با نرخ ترجیحی",
+              "title": "shortAccTarjihiHadNaghdinegi",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            }
+          ],
+          [
+            {
+              "name": "حساب پس انداز",
+              "title": "gharzAccHadNaghdinegi",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            },
+            {
+              "name": "حساب بلندمدت یکساله",
+              "title": "longAccHadNaghdinegi",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            }
+          ],
+          [
+            {
+              "name": "حساب جاری دولتی",
+              "title": "jariDolatiHadNaghdinegi",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            },
+            {
+              "name": "emptyCell",
+              "title": "",
+              "value": {
+                "type": "emptyCell",
+                "schema": { "type": "emptyCell" }
+              }
+            }
+          ],
+          [
+            {
+              "name": "حساب جاری",
+              "title": "jariAccNerkheGhanooni",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            },
+            {
+              "name": "حساب کوتاه مدت عادی",
+              "title": "shortAccNerkheGhanooni",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            }
+          ],
+          [
+            {
+              "name": "حساب کوتاه مدت ویژه",
+              "title": "shortAccVizheNerkheGhanooni",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            },
+            {
+              "name": "حساب کوتاه مدت با نرخ ترجیحی",
+              "title": "shortAccTarjihiNerkheGhanooni",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            }
+          ],
+          [
+            {
+              "name": "حساب پس انداز",
+              "title": "gharzAccNerkheGhanooni",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            },
+            {
+              "name": "حساب بلندمدت یکساله",
+              "title": "longAccNerkheGhanooni",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            }
+          ],
+          [
+            {
+              "name": "حساب جاری دولتی",
+              "title": "jariAccDolatiNerkheGhanooni",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            },
+            {
+              "name": "emptyCell",
+              "title": "",
+              "value": {
+                "type": "emptyCell",
+                "schema": { "type": "emptyCell" }
+              }
+            }
+          ],
+          [
+            {
+              "name": "حساب جاری",
+              "title": "jariAccJayezeSeporde",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            },
+            {
+              "name": "حساب کوتاه مدت عادی",
+              "title": "shortAccJayezeSeporde",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            }
+          ],
+          [
+            {
+              "name": "حساب کوتاه مدت ویژه",
+              "title": "shortAccVizheJayezeSeporde",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            },
+            {
+              "name": "حساب پس انداز",
+              "title": "gharzAccJayezeSeporde",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            }
+          ],
+          [
+            {
+              "name": "حساب بلندمدت یکساله",
+              "title": "longAccJayezeSeporde",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            },
+            {
+              "name": "emptyCell",
+              "title": "",
+              "value": {
+                "type": "emptyCell",
+                "schema": { "type": "emptyCell" }
+              }
+            }
+          ]
+        ]
+      },
+      "eghdamat": {
+        "datasourceName": "localds",
+        "schema": "TAFSHMA",
+        "content": [
+          [
+            {
+              "name": "عنوان",
+              "title": "title",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            },
+            {
+              "name": "emptyCell",
+              "title": "",
+              "value": {
+                "type": "emptyCell",
+                "schema": { "type": "emptyCell" }
+              }
+            },
+            {
+              "name": "تاریخ",
+              "title": "date",
+              "value": { "type": "primitive", "schema": { "type": "Date" } }
+            }
+          ],
+          [
+            {
+              "name": "شرح اقدام",
+              "title": "description",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            }
+          ]
+        ]
+      },
+      "tafahomFirstForm": {
+        "datasourceName": "localds",
+        "schema": "TAFSHMA",
+        "content": [
+          [
+            {
+              "name": "شماره آرشیو",
+              "title": "archiveNumber",
+              "value": {
+                "type": "primitive",
+                "schema": { "type": "String", "isUnique": true }
+              }
+            },
+            {
+              "name": "تاریخ درخواست",
+              "title": "requestDate",
+              "value": { "type": "primitive", "schema": { "type": "Date" } }
+            }
+          ],
+          [
+            {
+              "name": "عنوان تفاهم نامه",
+              "title": "title",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            },
+            {
+              "name": "نوع تفاهم نامه",
+              "title": "type",
+              "value": {
+                "type": "primitive",
+                "schema": {
+                  "type": "String",
+                  "enum": ["انتخاب کنید", "کشوری", "استانی", "تخصیصی"],
+                  "option": "select"
+                }
+              }
+            }
+          ],
+          [
+            {
+              "name": "مدیریت شعب",
+              "title": "branchManagement",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            },
+            {
+              "name": "شعبه عامل",
+              "title": "branch",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            }
+          ],
+          [
+            {
+              "name": "ناحیه",
+              "title": "region",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            },
+            {
+              "name": "ادارات کل",
+              "title": "administration",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            }
+          ],
+          [
+            {
+              "name": "کارشناس تفاهم نامه",
+              "title": "expertId",
+              "value": {
+                "type": "primitive",
+                "schema": {
+                  "type": "String",
+                  "enum": ["انتخاب کنید", "کشوری", "استانی", "تخصیصی"],
+                  "option": "select"
+                }
+              }
+            },
+            {
+              "name": "وضعیت تفاهم نامه",
+              "title": "state",
+              "value": {
+                "type": "primitive",
+                "schema": {
+                  "type": "String",
+                  "enum": ["انتخاب کنید", "دردست اقدام", "بلااقدام", "نافذ"],
+                  "option": "select",
+                  "size": { "minValue": 4, "maxValue": 50 }
+                }
+              }
+            }
+          ]
+        ]
+      },
+      "tafahomFinalForm": {
+        "datasourceName": "localds",
+        "schema": "TAFSHMA",
+        "content": [
+          [
+            {
+              "name": "شماره آرشیو",
+              "title": "archiveNO",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            },
+            {
+              "name": "عنوان تفاهم نامه",
+              "title": "title",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            }
+          ],
+          [
+            {
+              "name": "مدیریت شعب عامل",
+              "title": "managementBranch",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            },
+            {
+              "name": "شعبه عامل",
+              "title": "branchNO",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            }
+          ],
+          [
+            {
+              "name": "کدتفاهم نامه",
+              "title": "code",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            },
+            {
+              "name": "کارشناس تفاهم نامه",
+              "title": "userName",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            }
+          ],
+          [
+            {
+              "name": "شماره مشتری/ سازمان",
+              "title": "customerId",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            },
+            {
+              "name": "نام مشتری/ سازمان",
+              "title": "customerName",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            }
+          ],
+          [
+            {
+              "name": "تاریخ انعقاد",
+              "title": "startDta",
+              "value": { "type": "primitive", "schema": { "type": "Date" } }
+            },
+            {
+              "name": "تاریخ انتقضاء",
+              "title": "endDate",
+              "value": { "type": "primitive", "schema": { "type": "Date" } }
+            }
+          ],
+          [
+            {
+              "name": "نوع منطقه",
+              "title": "regionType",
+              "value": {
+                "type": "primitive",
+                "schema": {
+                  "type": "String",
+                  "enum": ["منطقه عادی", "منطقه آزاد تجاری - اقتصادی"],
+                  "option": "select"
+                }
+              }
+            },
+            {
+              "name": "تجدید پذیر",
+              "title": "isRecursive",
+              "value": {
+                "type": "primitive",
+                "schema": { "type": "boolean", "option": "switch" }
+              }
+            }
+          ],
+          [
+            {
+              "name": "نوع دریافت تسهیلات",
+              "title": "amountAllocationType",
+              "value": {
+                "type": "primitive",
+                "schema": {
+                  "type": "String",
+                  "enum": ["مبلغ عددی", "درصد منابع", "هردو"],
+                  "option": "check"
+                }
+              }
+            },
+            {
+              "name": "نوع تفاهم نامه",
+              "title": "items",
+              "value": {
+                "type": "primitive",
+                "schema": {
+                  "type": "String",
+                  "enum": ["تسهیلات اعتباری", "بیمه", "کارتخوان", "خودپرداز"],
+                  "option": "check"
+                }
+              }
+            }
+          ],
+          [
+            {
+              "name": "تعداد افراد قابل اعطا",
+              "title": "numOfGrantedPerson",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            },
+            {
+              "name": "مبلغ ثابت قابل اعطا",
+              "title": "fixAmount",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            }
+          ],
+          [
+            {
+              "name": "درصد و حداکثرجاری قابل تخصیص",
+              "title": "jariGrantedAmount",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            },
+            {
+              "name": "درصد و حداکثر قرض الحسنه قابل تخصیص",
+              "title": "gharzGrantedAmount",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            }
+          ],
+          [
+            {
+              "name": "درصد وحداکثر کوتاه مدت قابل تخصیص",
+              "title": "shortGrantedAmount",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            },
+            {
+              "name": "درصد و حداکثر بلندمدت قابل تخصیص",
+              "title": "longGrantedAmount",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            }
+          ],
+          [
+            {
+              "name": "روش محاسبه معدل حساب",
+              "title": "calculateAVGType",
+              "value": {
+                "type": "primitive",
+                "schema": {
+                  "type": "String",
+                  "enum": [
+                    "محاسبه معدل حساب باشیوه استاندارد (روال فعلی)",
+                    "محاسبه مابه التفاوت معدل حساب براساس بازه تاریخی بامبداء مشخصی"
+                  ],
+                  "option": "radio"
+                }
+              }
+            },
+            {
+              "name": "درصد و حداکثر بلندمدت قابل تخصیص",
+              "title": "longGrantedAmount2",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            }
+          ],
+          [
+            {
+              "name": "emptyCell",
+              "title": "",
+              "value": {
+                "type": "emptyCell",
+                "schema": { "type": "emptyCell" }
+              }
+            },
+            {
+              "name": "تاریخ",
+              "title": "date",
+              "value": { "type": "primitive", "schema": { "type": "Date" } }
+            }
+          ]
+        ]
+      },
+      "agent": {
+        "datasourceName": "localds",
+        "schema": "TAFSHMA",
+        "content": [
+          [
+            {
+              "name": "نام",
+              "title": "firstName",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            },
+            {
+              "name": "نام خانوادگی",
+              "title": "lastName",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            }
+          ],
+          [
+            {
+              "name": "سمت",
+              "title": "jobTitle",
+              "value": {
+                "type": "primitive",
+                "schema": {
+                  "type": "String",
+                  "enum": [
+                    "انتخاب کنید",
+                    "مدیرعامل سازمان طرف تفاهم نامه",
+                    "نماینده سازمان طرف تفاهم نامه",
+                    "عضوهیات مدیره",
+                    "مدیرمالی",
+                    "مدیراداری"
+                  ],
+                  "option": "select"
+                }
+              }
+            },
+            {
+              "name": "شماره تلفن",
+              "title": "telNumber",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            }
+          ],
+          [
+            {
+              "name": "ارسال پیام",
+              "title": "shouldMessageSend",
+              "value": {
+                "type": "primitive",
+                "schema": {
+                  "type": "String",
+                  "enum": ["بلی", "خیر"],
+                  "option": "check"
+                }
+              }
+            },
+            {
+              "name": "ایمیل",
+              "title": "email",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            }
+          ],
+          [
+            {
+              "name": "شماره تلفن ثابت",
+              "title": "fixPhoneNumber",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            },
+            {
+              "name": "شماره تلفن همراه",
+              "title": "mobilePhoneNumber",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            }
+          ],
+          [
+            {
+              "name": "توضیحات",
+              "title": "description",
+              "value": { "type": "primitive", "schema": { "type": "String" } }
+            }
+          ]
+        ]
+      }
+    }
+  },
+  "account": {
+    "restServices": {},
+    "storedProcedures": {
+      "fullAccountInfo": {
+        "name": "SPG_FULLACCOUNTINFO03",
+        "description": "",
+        "datasourceName": "coreds",
+        "schema": "CORSHMA",
+        "parameters": {
+          "PO_ERROR": { "direction": "OUT", "type": "Integer" },
+          "PI_EXTACCNO": { "direction": "IN", "type": "BigDecimal" },
+          "PO_TYPEX": { "direction": "OUT", "type": "Short" },
+          "PO_ACCTYPE": { "direction": "OUT", "type": "Short" },
+          "PO_STATUSX": { "direction": "OUT", "type": "Short" },
+          "PO_ACCLOCKSTATUS": { "direction": "OUT", "type": "Short" },
+          "PO_CONTROLPAYERID": { "direction": "OUT", "type": "Short" },
+          "PO_ETRNSSTATUS": { "direction": "OUT", "type": "Short" },
+          "PO_PERMITDRAWDOC": { "direction": "OUT", "type": "Short" },
+          "PO_SERVICESTATUS": { "direction": "OUT", "type": "Short" },
+          "PO_ARZCODE": { "direction": "OUT", "type": "Short" },
+          "PO_CATEGORYCODE": { "direction": "OUT", "type": "Short" },
+          "PO_PROFITSTATUS": { "direction": "OUT", "type": "Short" },
+          "PO_RESPITEDELAY": { "direction": "OUT", "type": "Short" },
+          "PO_ACCCUSTTYPE": { "direction": "OUT", "type": "Short" },
+          "PO_ISINACTIVE": { "direction": "OUT", "type": "Short" },
+          "PO_ISACTIVE": { "direction": "OUT", "type": "Short" },
+          "PO_ISSUSPEND": { "direction": "OUT", "type": "Short" },
+          "PO_ISCLOSED": { "direction": "OUT", "type": "Short" },
+          "PO_ISACCLOCK": { "direction": "OUT", "type": "Short" },
+          "PO_ISINDIVIDUAL": { "direction": "OUT", "type": "Short" },
+          "PO_ISCOMMUNAL": { "direction": "OUT", "type": "Short" },
+          "PO_ACCDURATION": { "direction": "OUT", "type": "Short" },
+          "PO_PERMITABSENTDRAW": { "direction": "OUT", "type": "Short" },
+          "PO_BILLREPORTERBRANCH": { "direction": "OUT", "type": "Integer" },
+          "PO_BRANCH": { "direction": "OUT", "type": "Integer" },
+          "PO_CREATEDATE": { "direction": "OUT", "type": "Integer" },
+          "PO_INTCUSTID": { "direction": "OUT", "type": "Integer" },
+          "PO_STAMPDATE": { "direction": "OUT", "type": "Integer" },
+          "PO_MINDURATION": { "direction": "OUT", "type": "Integer" },
+          "PO_STAMPAMNT": { "direction": "OUT", "type": "Integer" },
+          "PO_ACCNO": { "direction": "OUT", "type": "BigDecimal" },
+          "PO_EXTACCNO": { "direction": "OUT", "type": "BigDecimal" },
+          "PO_SANJESHACCNO": { "direction": "OUT", "type": "BigDecimal" },
+          "PO_EXTCUSTID": { "direction": "OUT", "type": "BigDecimal" },
+          "PO_MINBALANCE": { "direction": "OUT", "type": "BigDecimal" },
+          "PO_MINPROFITBALANCE": { "direction": "OUT", "type": "BigDecimal" },
+          "PO_OWNERNAME": { "direction": "OUT", "type": "String" },
+          "PO_STEP": { "direction": "OUT", "type": "Integer" }
+        },
+        "resultSet": {}
+      }
+    },
+    "jpas": {}
+  },
+  "customer": { "restServices": {}, "storedProcedures": {}, "jpas": {} },
+  "baseInformation": {
+    "restServices": {},
+    "storedProcedures": {
+      "jBGBKZO3": {
+        "name": "jBGBKZO3",
+        "description": "بازیابی لیست مناطق",
+        "datasourceName": "misds",
+        "schema": "JAMSHMA",
+        "parameters": {
+          "zoneCode": { "direction": "IN", "type": "String" },
+          "zoneCode1": { "direction": "OUT", "type": "String" }
+        },
+        "resultSet": {
+          "zoneCode": { "direction": "OUT", "type": "Integer" },
+          "zoneDesc": { "direction": "OUT", "type": "String" }
+        }
+      }
+    },
+    "jpas": {}
+  }
+}

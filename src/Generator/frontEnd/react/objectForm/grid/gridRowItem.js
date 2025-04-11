@@ -1,0 +1,24 @@
+import { Row, Col, FormLabel, FormControl } from 'react-bootstrap';
+// import { IContainer } from '../container/GridContainer';
+import { v4 as uuid } from 'uuid';
+
+export const GridRowItem = ({ rowCells }) => {
+  {
+    // console.log(rowCells);
+  }
+  return (
+    <Row>
+      {rowCells.map((cell) => {
+        return (
+          <Col
+            className="border text-center font-weight-bolder"
+            style={{ paddingBottom: '0.5rem', border: '1px solid ' }}
+            key={uuid()}
+          >
+            {cell}
+          </Col>
+        );
+      })}
+    </Row>
+  );
+};
